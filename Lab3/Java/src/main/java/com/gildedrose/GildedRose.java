@@ -9,20 +9,17 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            if (item.getName().equals("Aged Brie")
-                || item.getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (item.getQuality() < 50) {
+            if (item.getName().equals("Aged Brie")) {
+                item.increaseQualituByOne();
+            } else if (item.getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
+                item.increaseQualituByOne();
+
+                if (item.getSellIn() < 6) {
                     item.increaseQualituByOne();
+                }
 
-                    if (item.getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (item.getSellIn() < 11) {
-                            item.increaseQualituByOne();
-                        }
-
-                        if (item.getSellIn() < 6) {
-                            item.increaseQualituByOne();
-                        }
-                    }
+                if (item.getSellIn() < 11) {
+                    item.increaseQualituByOne();
                 }
             } else if (!item.getName().equals("Sulfuras, Hand of Ragnaros")) {
                 item.decreaseQualituByOne();
@@ -32,18 +29,24 @@ class GildedRose {
                 item.setSellIn(item.getSellIn() - 1);
             }
 
-            if (item.getName().equals("Aged Brie")) {
-                if (item.getSellIn() < 0) {
-                    item.increaseQualituByOne();
-                }
-            } else if (item.getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (item.getSellIn() < 0) {
-                    item.setQuality(0);
-                }
-            } else if (!item.getName().equals("Sulfuras, Hand of Ragnaros")) {
-                if (item.getSellIn() < 0) {
-                    item.decreaseQualituByOne();
-                }
+            switch (item.getName()) {
+                case "Aged Brie":
+                    if (item.getSellIn() < 0) {
+                        item.increaseQualituByOne();
+                    }
+                    break;
+                case "Backstage passes to a TAFKAL80ETC concert":
+                    if (item.getSellIn() < 0) {
+                        item.setQuality(0);
+                    }
+                    break;
+                case "Sulfuras, Hand of Ragnaros":
+                    break;
+                default:
+                    if (item.getSellIn() < 0) {
+                        item.decreaseQualituByOne();
+                    }
+                    break;
             }
         }
     }
