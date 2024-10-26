@@ -36,6 +36,14 @@ public class Item {
         }
     }
 
+    public void updateQuality() {
+        decreaseQualituByOne();
+        setSellIn(getSellIn() - 1);
+        if (getSellIn() < 0) {
+            decreaseQualituByOne();
+        }
+    }
+
     @Override
     public String toString() {
         return this.name + ", " + this.sellIn + ", " + this.quality;
