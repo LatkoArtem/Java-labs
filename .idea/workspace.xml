@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="c5d50bf8-c90f-4232-959a-cea97eb75e2a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/lab2/Designer.class" beforeDir="false" afterPath="$PROJECT_DIR$/lab2/Designer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab2/Developer.class" beforeDir="false" afterPath="$PROJECT_DIR$/lab2/Developer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab2/Main_1.class" beforeDir="false" afterPath="$PROJECT_DIR$/lab2/Main_1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab2/Main_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab2/Main_1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab2/Manager.class" beforeDir="false" afterPath="$PROJECT_DIR$/lab2/Manager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +14,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/lab1/NumberOperations.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
@@ -27,17 +29,28 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Latko Artem/OneDrive/Desktop/Java-labs&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193" />
       </set>
     </attachedChunks>
   </component>
@@ -51,6 +64,17 @@
       <updated>1729784406678</updated>
       <workItem from="1729784407863" duration="69000" />
       <workItem from="1729784484935" duration="6000" />
+      <workItem from="1732042305870" duration="96000" />
+      <workItem from="1732042443043" duration="95000" />
+      <workItem from="1732042578113" duration="57000" />
+      <workItem from="1732042655004" duration="23000" />
+      <workItem from="1732042685118" duration="28000" />
+      <workItem from="1732042720620" duration="10000" />
+      <workItem from="1732042737742" duration="88000" />
+      <workItem from="1732042839458" duration="24000" />
+      <workItem from="1732042883214" duration="587000" />
+      <workItem from="1732043487864" duration="120000" />
+      <workItem from="1732043628646" duration="85000" />
     </task>
     <servers />
   </component>
