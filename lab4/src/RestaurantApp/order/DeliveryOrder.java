@@ -9,6 +9,6 @@ public class DeliveryOrder extends Order {
 
     @Override
     public void processOrder() {
-        System.out.println("Замовлення на доставку обробляється: " + getItems());
+        System.out.println("Замовлення (на доставку) обробляється: " + getItems());
     }
 }

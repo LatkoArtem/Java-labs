@@ -17,8 +17,39 @@ public class OrderService {
 
     // Порядок обробки замовлення
     public void handleOrder(Order order, double paymentAmount) {
+        try {
+            order.processOrder();              // Обробка замовлення
+            Thread.sleep(2000);                // Затримка 2 секунди
+            System.out.print(".");
+            Thread.sleep(1000);
+            System.out.print(".");
+            Thread.sleep(1000);
+            System.out.print(".");
+            Thread.sleep(1000);
+            System.out.println();
+
+            kitchen.prepareOrder(order);       // Виклик кухні
+            Thread.sleep(2000);                // Затримка 2 секунди
+            System.out.print(".");
+            Thread.sleep(1000);
+            System.out.print(".");
+            Thread.sleep(1000);
+            System.out.print(".");
+            Thread.sleep(1000);
+            System.out.println();
+
+            paymentSystem.processPayment(order.getOrderId(), paymentAmount); // Оплата
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Це тей самий метод handleOrder тільки без затримок
+    /*
+    public void handleOrder(Order order, double paymentAmount) {
         order.processOrder();              // Обробка замовлення
         kitchen.prepareOrder(order);       // Виклик кухні
         paymentSystem.processPayment(order.getOrderId(), paymentAmount); // Оплата
     }
+    */
 }

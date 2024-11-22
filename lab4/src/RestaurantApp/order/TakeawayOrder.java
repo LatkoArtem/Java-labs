@@ -9,6 +9,6 @@ public class TakeawayOrder extends Order {
 
     @Override
     public void processOrder() {
-        System.out.println("Замовлення на винос обробляється: " + getItems());
+        System.out.println("Замовлення (на винос) обробляється: " + getItems());
     }
 }

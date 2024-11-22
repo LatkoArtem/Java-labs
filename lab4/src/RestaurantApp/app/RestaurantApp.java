@@ -6,44 +6,20 @@ import RestaurantApp.order.OrderFactory;
 import RestaurantApp.payment.CashPayment;
 import RestaurantApp.service.OrderService;
 import RestaurantApp.payment.PaymentSystem;
+import RestaurantApp.payment.CreditCardPayment;
+import RestaurantApp.menu.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-// Клас для представлення елемента меню
-class MenuItem {
-    private final String name;
-    private final double price;
-
-    public MenuItem(String name, double price) {
-        this.name = name;
-        this.price = price;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    @Override
-    public String toString() {
-        return name + " - " + price + " грн";
-    }
-}
-
 public class RestaurantApp {
-
     public static void main(String[] args) {
+        clearConsole();
         Scanner scanner = new Scanner(System.in);
 
         // Ініціалізація компонентів
         Kitchen kitchen = new Kitchen();
-        PaymentSystem cashPayment = new CashPayment(); // Оплата готівкою
-        OrderService orderService = new OrderService(kitchen, cashPayment);
 
         while (true) {
             // Головне меню
@@ -56,29 +32,30 @@ public class RestaurantApp {
 
             if (choice == 0) {
                 clearConsole();
-                System.out.println("Дякуємо, що скористались нашою системою!");
+                System.out.println("Вихід з програми!");
                 break;
             } else if (choice == 1) {
                 clearConsole();
-                makeOrder(scanner, orderService);
+                makeOrder(scanner, kitchen);
             } else {
                 clearConsole();
                 System.out.println("Неправильний вибір. Спробуйте ще раз.");
+                System.out.println();
             }
         }
     }
 
-    private static void makeOrder(Scanner scanner, OrderService orderService) {
+    private static void makeOrder(Scanner scanner, Kitchen kitchen) {
         // Список доступного меню
         List<MenuItem> menu = List.of(
                 new MenuItem("Піца", 150.0),
                 new MenuItem("Салат", 80.0),
                 new MenuItem("Суп", 100.0),
-                new MenuItem("Напій", 50.0),
+                new MenuItem("Чай", 50.0),
                 new MenuItem("Десерт", 120.0)
         );
 
-        List<String> selectedItems = new ArrayList<>(); // Вибрані страви
+        List<MenuItem> selectedItems = new ArrayList<>(); // Вибрані страви
         double totalPrice = 0; // Загальна сума
 
         while (true) {
@@ -96,7 +73,7 @@ public class RestaurantApp {
                 break; // Завершення вибору
             } else if (choice > 0 && choice <= menu.size()) {
                 MenuItem selectedItem = menu.get(choice - 1);
-                selectedItems.add(selectedItem.getName()); // Додавання страви до замовлення
+                selectedItems.add(selectedItem); // Додавання страви до замовлення
                 totalPrice += selectedItem.getPrice();
                 clearConsole();
                 System.out.println(selectedItem.getName() + " додано до замовлення.");
@@ -118,17 +95,36 @@ public class RestaurantApp {
         String orderType = chooseOrderType(scanner);
 
         // Створення замовлення через OrderFactory
-        Order order = OrderFactory.createOrder(orderType, "456", selectedItems);
+        Order order = OrderFactory.createOrder(orderType, "456", selectedItems.stream().map(MenuItem::getName).toList());
 
         // Обробка замовлення
         clearConsole();
         System.out.println("----- Ваше замовлення -----");
-        for (String item : selectedItems) {
-            System.out.println("- " + item);
+        for (MenuItem item : selectedItems) {
+            System.out.println("• " + item);
         }
+        System.out.println("---------------------------");
         System.out.println("Загальна сума: " + totalPrice + " грн");
+        System.out.println("---------------------------");
+        System.out.println();
+        System.out.println("Натисніть ENTER, щоб перейти до оплати...");
+        scanner.nextLine(); // Спочатку дочекаємося завершення попереднього вводу
+        scanner.nextLine(); // Читаємо фактичне натискання ENTER
+        clearConsole();
+
+        // Вибір способу оплати
+        PaymentSystem paymentSystem = choosePaymentMethod(scanner);
+
+        // Створення нового OrderService з вибраним способом оплати
+        OrderService orderService = new OrderService(kitchen, paymentSystem);
+
+        // Обробка замовлення
         orderService.handleOrder(order, totalPrice); // Передаємо замовлення в сервіс
         System.out.println();
+        System.out.println("Натисніть ENTER, щоб повернутися на головний екран...");
+        scanner.nextLine(); // Спочатку дочекаємося завершення попереднього вводу
+        scanner.nextLine(); // Читаємо фактичне натискання ENTER
+        clearConsole();
     }
 
     // Вибрати тип замовлення
@@ -156,9 +152,36 @@ public class RestaurantApp {
         }
     }
 
+    // Вибір способу оплати
+    private static PaymentSystem choosePaymentMethod(Scanner scanner) {
+        PaymentSystem paymentSystem = null;
+
+        while (paymentSystem == null) {
+            System.out.println("Спосіб оплати:");
+            System.out.println("1. Готівкою");
+            System.out.println("2. Кредитною карткою");
+            System.out.print("Оберіть спосіб оплати: ");
+            int paymentChoice = scanner.nextInt();
+
+            if (paymentChoice == 1) {
+                paymentSystem = new CashPayment();
+                clearConsole();
+            } else if (paymentChoice == 2) {
+                paymentSystem = new CreditCardPayment();
+                clearConsole();
+            } else {
+                clearConsole();
+                System.out.println("Неправильний вибір. Спробуйте ще раз.");
+                System.out.println();
+            }
+        }
+
+        return paymentSystem;
+    }
+
     // Метод для очищення термінала
     private static void clearConsole() {
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 25; i++) {
             System.out.println();
         }
     }
