@@ -18,7 +18,7 @@ public class ProjectManager {
                 return project;
             }
         }
-        return null;
+        return null; // Проект не знайдено
     }
 
     public List<CompositeTask> getAllProjects() {
