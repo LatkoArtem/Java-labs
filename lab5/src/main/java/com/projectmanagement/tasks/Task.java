@@ -17,12 +17,13 @@ public class Task {
         return completed;
     }
 
+    // Шаблонний метод: визначає послідовність кроків
     public void execute() {
-        this.completed = true;
-    }
-
-    @Override
-    public String toString() {
-        return name + (completed ? " [Виконано]" : " [Невиконано]");
+        if (!completed) {
+            System.out.println("Виконується завдання: " + name);
+            completed = true; // Позначаємо завдання як виконане
+        } else {
+            System.out.println("Завдання '" + name + "' вже виконано.");
+        }
     }
 }

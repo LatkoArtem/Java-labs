@@ -123,8 +123,24 @@ public class MainMenu {
         CompositeTask project = projectManager.getProjectByName(projectName);
 
         if (project != null) {
-            project.execute();
-            System.out.println("Всі завдання в проекті '" + projectName + "' виконано.");
+            System.out.print("Введіть назву завдання (або залиште порожнім для виконання всього проекту): ");
+            String taskName = scanner.nextLine();
+
+            if (taskName.isEmpty()) {
+                // Виконуємо весь проєкт (всі завдання і підзавдання)
+                project.execute();
+                System.out.println("Всі завдання у проекті '" + projectName + "' виконано.");
+            } else {
+                // Шукаємо конкретне завдання у проєкті
+                Task task = findTaskByName(project, taskName);
+
+                if (task != null) {
+                    task.execute();
+                    System.out.println("Завдання '" + taskName + "' виконано.");
+                } else {
+                    System.out.println("Завдання з назвою '" + taskName + "' не знайдено у проекті '" + projectName + "'.");
+                }
+            }
         } else {
             System.out.println("Проект з назвою '" + projectName + "' не знайдено.");
         }

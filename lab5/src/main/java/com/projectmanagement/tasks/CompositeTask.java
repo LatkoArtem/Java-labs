@@ -26,22 +26,16 @@ public class CompositeTask extends Task {
         return subTasks.removeIf(task -> task.getName().equalsIgnoreCase(name));
     }
 
-    // Рекурсивне виконання всіх підзавдань
     @Override
     public void execute() {
-        for (Task task : subTasks) {
-            task.execute();
+        if (!isCompleted()) {
+            System.out.println("Виконується складне завдання: " + getName());
+            for (Task subTask : subTasks) {
+                subTask.execute(); // Рекурсивно виконуємо підзавдання
+            }
+            super.execute(); // Позначаємо поточне завдання як виконане
+        } else {
+            System.out.println("Складне завдання '" + getName() + "' вже виконано.");
         }
-        super.execute();
-    }
-
-    // Вивід інформації про завдання та підзавдання
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder(super.toString());
-        for (Task subTask : subTasks) {
-            sb.append("\n  - ").append(subTask.toString().replaceAll("(?m)^", "    "));
-        }
-        return sb.toString();
     }
 }
