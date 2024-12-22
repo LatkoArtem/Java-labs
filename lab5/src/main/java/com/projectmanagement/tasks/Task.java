@@ -22,6 +22,7 @@ public class Task {
         if (!completed) {
             System.out.println("Виконується завдання: " + name);
             completed = true; // Позначаємо завдання як виконане
+            System.out.println("Завдання '" + name + "' виконано");
         } else {
             System.out.println("Завдання '" + name + "' вже виконано.");
         }

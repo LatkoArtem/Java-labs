@@ -12,8 +12,13 @@ public class CompositeTask extends Task {
     }
 
     // Додає підзавдання
-    public void addSubTask(Task task) {
+    public boolean addSubTask(Task task) {
+        if (subTasks.stream().anyMatch(t -> t.getName().equalsIgnoreCase(task.getName()))) {
+            System.out.println("Підзавдання з такою назвою вже існує.");
+            return false;
+        }
         subTasks.add(task);
+        return true;
     }
 
     // Отримує всі підзавдання
@@ -26,16 +31,27 @@ public class CompositeTask extends Task {
         return subTasks.removeIf(task -> task.getName().equalsIgnoreCase(name));
     }
 
+    // Перевірка, чи всі підзавдання виконані
+    public boolean areAllSubTasksCompleted() {
+        return subTasks.stream().allMatch(Task::isCompleted);
+    }
+
     @Override
     public void execute() {
         if (!isCompleted()) {
-            System.out.println("Виконується складне завдання: " + getName());
+            // Виконуємо всі підзавдання
             for (Task subTask : subTasks) {
-                subTask.execute(); // Рекурсивно виконуємо підзавдання
+                if (!subTask.isCompleted()) {
+                    subTask.execute(); // Рекурсивно виконуємо підзавдання
+                }
             }
-            super.execute(); // Позначаємо поточне завдання як виконане
+
+            // Якщо всі підзавдання виконані, позначаємо завдання як виконане
+            if (areAllSubTasksCompleted()) {
+                super.execute(); // Позначаємо поточне завдання як виконане
+            }
         } else {
-            System.out.println("Складне завдання '" + getName() + "' вже виконано.");
+            System.out.println("Завдання '" + getName() + "' вже виконано.");
         }
     }
 }
