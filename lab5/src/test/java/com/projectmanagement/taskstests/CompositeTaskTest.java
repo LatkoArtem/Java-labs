@@ -1,6 +1,5 @@
 package com.projectmanagement.taskstests;
 
-import com.projectmanagement.tasks.CompositeTask;
 import com.projectmanagement.tasks.Task;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,7 +8,7 @@ class CompositeTaskTest {
 
     @Test
     void testAddSubTask() {
-        CompositeTask compositeTask = new CompositeTask("Main Task");
+        com.projectmanagement.tasks.CompositeTask compositeTask = new com.projectmanagement.tasks.CompositeTask("Main Task");
         Task subTask = new Task("Sub Task 1");
 
         assertTrue(compositeTask.addSubTask(subTask), "Підзавдання має бути додано успішно.");
@@ -19,7 +18,7 @@ class CompositeTaskTest {
 
     @Test
     void testAddDuplicateSubTask() {
-        CompositeTask compositeTask = new CompositeTask("Main Task");
+        com.projectmanagement.tasks.CompositeTask compositeTask = new com.projectmanagement.tasks.CompositeTask("Main Task");
         Task subTask = new Task("Sub Task 1");
 
         compositeTask.addSubTask(subTask);
@@ -29,7 +28,7 @@ class CompositeTaskTest {
 
     @Test
     void testRemoveSubTaskByName() {
-        CompositeTask compositeTask = new CompositeTask("Main Task");
+        com.projectmanagement.tasks.CompositeTask compositeTask = new com.projectmanagement.tasks.CompositeTask("Main Task");
         Task subTask = new Task("Sub Task 1");
 
         compositeTask.addSubTask(subTask);
@@ -39,7 +38,7 @@ class CompositeTaskTest {
 
     @Test
     void testAreAllSubTasksCompleted() {
-        CompositeTask compositeTask = new CompositeTask("Main Task");
+        com.projectmanagement.tasks.CompositeTask compositeTask = new com.projectmanagement.tasks.CompositeTask("Main Task");
         Task subTask1 = new Task("Sub Task 1");
         Task subTask2 = new Task("Sub Task 2");
 
@@ -56,7 +55,7 @@ class CompositeTaskTest {
 
     @Test
     void testExecute() {
-        CompositeTask compositeTask = new CompositeTask("Main Task");
+        com.projectmanagement.tasks.CompositeTask compositeTask = new com.projectmanagement.tasks.CompositeTask("Main Task");
         Task subTask1 = new Task("Sub Task 1");
         Task subTask2 = new Task("Sub Task 2");
 

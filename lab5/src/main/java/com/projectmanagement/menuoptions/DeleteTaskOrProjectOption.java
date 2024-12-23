@@ -31,7 +31,7 @@ public class DeleteTaskOrProjectOption {
         }
     }
 
-    private void deleteProject(Scanner scanner) {
+    public void deleteProject(Scanner scanner) {
         System.out.print("Введіть назву проекту: ");
         String projectName = scanner.nextLine();
         if (projectManager.removeProjectOrTask(projectName)) {
@@ -41,7 +41,7 @@ public class DeleteTaskOrProjectOption {
         }
     }
 
-    private void deleteTask(Scanner scanner) {
+    public void deleteTask(Scanner scanner) {
         System.out.print("Введіть назву проекту: ");
         String projectName = scanner.nextLine();
         CompositeTask project = projectManager.getProjectByName(projectName);

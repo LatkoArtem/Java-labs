@@ -29,6 +29,26 @@ public class DeleteTaskOrProjectOptionTest {
     }
 
     @Test
+    void deleteTaskTest() {
+        ProjectManager projectManager = new ProjectManager();
+        DeleteTaskOrProjectOption deleteTaskOrProjectOption = new DeleteTaskOrProjectOption(projectManager);
+        String projectName = "Test Project";
+        String taskName = "Test Task";
+
+        // Створення проекту та завдання
+        CompositeTask project = new CompositeTask(projectName);
+        Task task = new Task(taskName);
+        project.addSubTask(task);
+        projectManager.addProject(project);
+
+        // Перевірка чи завдання можна видалити
+        deleteTaskOrProjectOption.deleteTask(new Scanner("Test Project\nTest Task"));
+
+        // Перевірка, чи завдання видалено
+        assertFalse(project.getSubTasks().contains(task), "Завдання не було видалене.");
+    }
+
+    @Test
     void deleteProjectNotFoundTest() {
         ProjectManager projectManager = new ProjectManager();
         DeleteTaskOrProjectOption deleteTaskOrProjectOption = new DeleteTaskOrProjectOption(projectManager);
@@ -46,7 +66,6 @@ public class DeleteTaskOrProjectOptionTest {
         ProjectManager projectManager = new ProjectManager();
         DeleteTaskOrProjectOption deleteTaskOrProjectOption = new DeleteTaskOrProjectOption(projectManager);
         String projectName = "Test Project";
-        String taskName = "NonExistentTask";
 
         // Створення проекту
         CompositeTask project = new CompositeTask(projectName);
@@ -57,5 +76,25 @@ public class DeleteTaskOrProjectOptionTest {
 
         // Перевірка, чи завдання не було знайдено
         assertTrue(project.getSubTasks().isEmpty(), "Завдання має бути відсутнім.");
+    }
+
+    @Test
+    void deleteSubTaskNotFoundTest() {
+        ProjectManager projectManager = new ProjectManager();
+        DeleteTaskOrProjectOption deleteTaskOrProjectOption = new DeleteTaskOrProjectOption(projectManager);
+        String projectName = "Test Project";
+        String taskName = "Test Task";
+
+        // Створення проекту та завдання
+        CompositeTask project = new CompositeTask(projectName);
+        CompositeTask task = new CompositeTask(taskName);
+        project.addSubTask(task);
+        projectManager.addProject(project);
+
+        // Спроба видалити неіснуюче підзавдання
+        deleteTaskOrProjectOption.deleteTask(new Scanner("Test Project\nTest Task\nNonExistentSubtask"));
+
+        // Перевірка, чи підзавдання не було знайдено
+        assertTrue(task.getSubTasks().isEmpty(), "Підзавдання має бути відсутнім.");
     }
 }

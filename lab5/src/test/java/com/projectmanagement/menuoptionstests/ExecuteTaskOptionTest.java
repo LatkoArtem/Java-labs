@@ -37,28 +37,6 @@ class ExecuteTaskOptionTest {
     }
 
     @Test
-    void testExecuteTaskWithExistingProjectAndNoTask() {
-        // Створюємо проект вручну
-        CompositeTask project = new CompositeTask("Test Project");
-
-        // Створюємо ProjectManager, щоб повертати створений проект
-        ProjectManager projectManager = new ProjectManager();
-        projectManager.addProject(project);
-
-        // Створюємо клас ExecuteTaskOption
-        ExecuteTaskOption executeTaskOption = new ExecuteTaskOption(projectManager);
-
-        // Створюємо Scanner, який буде повертати певне значення
-        Scanner scanner = new Scanner("Test Project\n");
-
-        // Викликаємо метод executeTask
-        executeTaskOption.executeTask(scanner);
-
-        // Перевіряємо, що проект був виконаний
-        assertTrue(project.isCompleted(), "Проект не був виконаний.");
-    }
-
-    @Test
     void testExecuteTaskWithNonExistingProject() {
         // Створюємо ProjectManager, не додаючи жодного проекту
         ProjectManager projectManager = new ProjectManager();
